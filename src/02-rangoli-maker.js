@@ -1,3 +1,5 @@
+import { cloneElement } from "react";
+
 /**
  * 🎨 Rangoli Border Maker - String Transform
  *
@@ -46,21 +48,36 @@
  *   splitAndJoinRangoli("red,blue", ",", "-")  // => "red-blue"
  */
 export function repeatPattern(pattern, times) {
-  // Your code here
+  if (!pattern || typeof pattern !== "string" || pattern === "") return "";
+  return pattern.repeat(times);
 }
 
 export function extractRangoliCenter(design, start, end) {
-  // Your code here
+  if (!design || typeof design !== "string" || design === "") return "";
+  if (!start || typeof start !== "number" || Number.isNaN(start)) return "";
+  if (!end || typeof end !== "number" || Number.isNaN(end)) return "";
+  return design.slice(start, end);
 }
 
 export function splitAndJoinRangoli(colorString, oldSep, newSep) {
-  // Your code here
+  if (!colorString || typeof colorString !== "string" || colorString === "")
+    return "";
+  if (!oldSep || typeof oldSep !== "number" || Number.isNaN(oldSep)) return "";
+  if (!newSep || typeof newSep !== "number" || Number.isNaN(newSep)) return "";
+  return colorString.split(oldSep).join(newSep);
 }
 
 export function replaceRangoliColor(design, oldColor, newColor) {
-  // Your code here
+  if (!design || typeof design !== "string" || Number.isNaN(design)) return "";
+  if (!oldColor || typeof oldColor !== "string" || Number.isNaN(oldColor))
+    return "";
+  if (!newColor || typeof newColor !== "string" || Number.isNaN(newColor))
+    return "";
+  return design.replaceAll("red", "pink");
 }
 
 export function makeRangoliBorder(char, length) {
-  // Your code here
+  if (!char || typeof char !== "string" || char === "") return "";
+  if (length || typeof length !== "number" || length <= 0) return "";
+  return char.repeat(length);
 }
