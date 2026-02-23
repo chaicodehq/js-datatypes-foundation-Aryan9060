@@ -53,7 +53,7 @@
  *   removeRationCard(registry, "RC001")    // => true
  */
 export function getFamilyNames(registry) {
-  // Your code here
+  if(!registry|| typeof registry !=='object')
 }
 
 export function getAllFamilies(registry) {
