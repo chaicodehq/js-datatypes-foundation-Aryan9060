@@ -48,36 +48,45 @@ import { cloneElement } from "react";
  *   splitAndJoinRangoli("red,blue", ",", "-")  // => "red-blue"
  */
 export function repeatPattern(pattern, times) {
-  if (!pattern || typeof pattern !== "string" || pattern === "") return "";
+  if (typeof pattern !== "string" || !Number.isInteger(times) || times < 0) {
+    return "";
+  }
   return pattern.repeat(times);
+  
 }
 
 export function extractRangoliCenter(design, start, end) {
-  if (!design || typeof design !== "string" || design === "") return "";
-  if (!start || typeof start !== "number" || Number.isNaN(start)) return "";
-  if (!end || typeof end !== "number" || Number.isNaN(end)) return "";
+  if (typeof design !== "string" || typeof start !== "number" || typeof end !== "number") {
+    return "";
+  }
   return design.slice(start, end);
+  
 }
 
 export function splitAndJoinRangoli(colorString, oldSep, newSep) {
-  if (!colorString || typeof colorString !== "string" || colorString === "")
+  if (typeof colorString !== "string" || typeof oldSep !== "string" || typeof newSep !== "string") {
     return "";
-  if (!oldSep || typeof oldSep !== "number" || Number.isNaN(oldSep)) return "";
-  if (!newSep || typeof newSep !== "number" || Number.isNaN(newSep)) return "";
+  }
   return colorString.split(oldSep).join(newSep);
+  
 }
 
 export function replaceRangoliColor(design, oldColor, newColor) {
-  if (!design || typeof design !== "string" || Number.isNaN(design)) return "";
-  if (!oldColor || typeof oldColor !== "string" || Number.isNaN(oldColor))
+  if (
+    typeof design !== "string" ||
+    typeof oldColor !== "string" ||
+    typeof newColor !== "string"
+  ) {
     return "";
-  if (!newColor || typeof newColor !== "string" || Number.isNaN(newColor))
-    return "";
-  return design.replaceAll("red", "pink");
+  }
+  return design.replaceAll(oldColor, newColor);
+  
 }
 
 export function makeRangoliBorder(char, length) {
-  if (!char || typeof char !== "string" || char === "") return "";
-  if (length || typeof length !== "number" || length <= 0) return "";
-  return char.repeat(length);
+  if (typeof char !== "string" || typeof length !== "number" || length <= 0) {
+    return "";
+  }
+  return char.repeat(length).slice(0, length);
+  
 }
